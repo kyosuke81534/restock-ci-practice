@@ -1,0 +1,10 @@
+name: テスト
+on: [pull_request]               # プルリクエストが出されたら、動かす
+jobs:
+  test:
+    runs-on: ubuntu-latest       # きれいな、新しい環境を、用意する
+    steps:
+      - uses: actions/checkout@v4          # コードを取得（版は、公式で最新を確認）
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node --test points.test.js api.test.js restock_batch.test.js
